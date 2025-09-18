@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng sinh nhật - Xuân Đạt</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(135deg,#0f172a,#1a2a6c);
+      color:#fff;
+      text-align:center;
+      padding:20px;
+    }
+    h1{font-size:42px;margin-top:20px;color:#ffcc00;text-shadow:0 0 10px #ff9900;}
+    h2{margin:10px 0;color:#ffd700}
+    .avatar{width:200px;height:200px;border-radius:20px;object-fit:cover;margin:20px auto;
+      box-shadow:0 0 20px #ffcc00,0 0 40px #ff6699;display:block;}
+    .info{margin:20px auto;font-size:20px;line-height:1.8;max-width:600px;
+      background:rgba(255,255,255,0.1);padding:15px;border-radius:12px;
+      box-shadow:0 0 15px rgba(255,255,255,0.3);}
+    .poem{margin:20px auto;max-width:700px;line-height:1.6;font-size:18px;}
+    .gift-btn{
+      display:inline-block;margin-top:30px;padding:12px 24px;font-size:18px;
+      border:none;border-radius:10px;background:#ff3366;color:#fff;cursor:pointer;
+      box-shadow:0 6px 20px rgba(255,51,102,0.5);transition:0.3s;z-index:10;position:relative;
+    }
+    .gift-btn:hover{background:#ff6699}
+  </style>
+</head>
+<body>
+  <h1>🎉 Chúc mừng sinh nhật Xuân Đạt 🎉</h1>
+
+  <img src="https://sf-static.upanhlaylink.com/img/image_20250918eaa104fac00775ae63226ba427256b89.jpg" alt="Xuân Đạt" class="avatar">
+
+  <div class="info">
+    <p><b>Tên:</b> Xuân Đạt</p>
+    <p><b>Tuổi:</b> 15</p>
+    <p><b>Ngày sinh :</b> 19/09/2011</p>
+    <p><b>Lời chúc:</b> Happy Birthday 🎂🎉</p>
+  </div>
+
+  <h2>Tuổi mới thêm niềm vui và hạnh phúc</h2>
+
+  <div class="poem">
+    Hôm nay sinh nhật của Xuân Đạt,<br>
+    Niềm vui hạnh phúc đến dồi dào<br>
+    Tuổi mới tràn đầy bao may mắn,<br>
+    Thành công rực rỡ tựa ánh sao.<br><br>
+    Bạn bè chúc Mừng sinh nhật<br>
+    Người thân quây quần ấm ngọt ngào.<br>
+    Chúc cho cuộc sống luôn tươi đẹp,<br>
+    Xuân Đạt vững bước, mãi tự hào.
+  </div>
+
+  <button class="gift-btn" onclick="openGift()">🎁 Mở quà</button>
+
+  <!-- Template ẩn chứa giao diện lì xì -->
+  <template id="giftTemplate">
+    <!doctype html>
+    <html lang="vi">
+    <head>
+      <meta charset="utf-8">
+      <title>Quà Sinh Nhật</title>
+      <style>
+        body{margin:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+          min-height:100vh;background:#000;color:#fff;overflow:auto;font-family:Arial}
+        h1{position:absolute;top:20px;width:100%;text-align:center;font-size:36px;color:#0ff;
+          text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff;}
+        .bag{width:160px;height:220px;margin:12px;background:red;border-radius:12px;
+          position:relative;transform:translateY(-200%);opacity:0;animation:slideIn 1s forwards;
+          cursor:pointer;overflow:hidden;}
+        .bag::before{content:'';position:absolute;top:-25px;left:25%;width:50%;height:35px;
+          background:gold;border-radius:6px;}
+        @keyframes slideIn{from{transform:translateY(-200%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+        .money{width:120px;height:180px;background:linear-gradient(45deg,#00ff99,#00ccff);
+          border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;
+          color:#000;position:absolute;left:20px;top:20px;transform:scaleY(0);transform-origin:bottom;
+          transition:transform 0.6s;box-shadow:0 0 15px rgba(0,255,200,0.7);font-size:24px;z-index:2;}
+        .bag.open .money{transform:scaleY(1);}
+        /* Tiền bay ra */
+        .flying-money{
+          position:absolute;
+          width:60px;height:30px;background:linear-gradient(45deg,#00ff99,#00ccff);
+          border-radius:5px;display:flex;align-items:center;justify-content:center;
+          color:#000;font-size:14px;font-weight:bold;
+          animation:fly 1s forwards;
+          z-index:3;
+        }
+        @keyframes fly{
+          from{opacity:1;transform:translate(0,0) rotate(0deg) scale(1);}
+          to{opacity:0;transform:translate(var(--x),var(--y)) rotate(720deg) scale(0.5);}
+        }
+      </style>
+    </head>
+    <body>
+      <h1>🎉 Mở lì xì nhận may mắn 🎉</h1>
+      <script>
+        function randomAmount(){
+          const amounts = ["20K","30K","50K"];
+          return amounts[Math.floor(Math.random()*amounts.length)];
+        }
+        function openBag(bag){
+          if(!bag.classList.contains('open')){
+            const moneyDiv = bag.querySelector('.money');
+            const amount = randomAmount();
+            moneyDiv.textContent = amount;
+            bag.classList.add('open');
+            // tạo hiệu ứng tiền bay
+            for(let i=0;i<6;i++){
+              const fly = document.createElement('div');
+              fly.className = 'flying-money';
+              fly.textContent = amount;
+              // random hướng bay
+              const angle = Math.random()*2*Math.PI;
+              const distance = 200+Math.random()*100;
+              fly.style.setProperty('--x', Math.cos(angle)*distance+'px');
+              fly.style.setProperty('--y', Math.sin(angle)*distance+'px');
+              bag.appendChild(fly);
+              setTimeout(()=>fly.remove(),1000);
+            }
+          }
+        }
+        for(let i=0;i<15;i++){
+          document.write(`<div class='bag' style='animation-delay:${i*0.2}s' onclick='openBag(this)'><div class='money'></div></div>`);
+        }
+      </script>
+    </body>
+    </html>
+  </template>
+
+  <script>
+    function openGift(){
+      const giftWindow = window.open("", "_blank", "width=1000,height=800");
+      const template = document.getElementById("giftTemplate").innerHTML;
+      giftWindow.document.open();
+      giftWindow.document.write(template);
+      giftWindow.document.close();
+    }
+  </script>
+</body>
+</html>
